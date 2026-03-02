@@ -165,30 +165,43 @@
     .phil-card p { font-size: 0.9rem; line-height: 1.75; color: var(--muted); font-weight: 300; }
 
     /* TEAM PREVIEW */
-    .team-preview { margin-bottom: 6rem; }
-    .team-preview h2 {
+    .team-full { margin-bottom: 6rem; }
+    .team-full h2 {
       font-family: var(--ff-display);
       font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 300;
       color: var(--deep); margin-bottom: 1rem;
     }
-    .team-preview > p { font-size: 1rem; color: var(--muted); font-weight: 300; margin-bottom: 3rem; max-width: 560px; line-height: 1.85; }
-    .team-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
-    .tp-card { display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem; background: var(--white); border-radius: 4px; }
-    .tp-photo {
-      width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+    .team-intro { font-size: 1rem; color: var(--muted); font-weight: 300; margin-bottom: 3.5rem; max-width: 580px; line-height: 1.85; }
+    .coach-grid { display: flex; flex-direction: column; gap: 3.5rem; }
+    .coach-bio-card {
+      display: grid; grid-template-columns: 220px 1fr;
+      gap: 3rem; align-items: start;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid rgba(196,168,130,0.2);
     }
-    .tp-photo-1 { background: #7A6050; }
-    .tp-photo-2 { background: #6A7B6A; }
-    .tp-photo-3 { background: #6A7080; }
-    .tp-info h4 { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 400; color: var(--deep); }
-    .tp-info span { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
-    .tp-avail {
-      display: inline-block; font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.2rem 0.6rem; border-radius: 2px; margin-top: 0.35rem;
+    .coach-bio-card:last-child { border-bottom: none; padding-bottom: 0; }
+    .coach-photo {
+      width: 220px; aspect-ratio: 3/4;
+      border-radius: 4px;
+      background-size: cover; background-position: center top;
+      flex-shrink: 0;
     }
-    .open { background: var(--sage); color: white; }
-    .waitlist { background: rgba(196,168,130,0.2); color: var(--warm); }
+    .coach-photo-jordan { background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMzAwIDQwMCI+CiAgICA8IS0tIEJhY2tncm91bmQgLS0+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzhhOWU4YSIvPgogICAgCiAgICA8IS0tIFN1YnRsZSB0ZXh0dXJlIC0tPgogICAgPHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZ3JhaW4pIiBvcGFjaXR5PSIwLjMiLz4KICAgIAogICAgPCEtLSBCb2R5IC8gU2hvdWxkZXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjQyMCIgcng9IjEzMCIgcnk9IjkwIiBmaWxsPSIjZDRhODgyIiBvcGFjaXR5PSIwLjkiLz4KICAgIAogICAgPCEtLSBDbG90aGluZyAtLT4KICAgIDxwYXRoIGQ9Ik0yMCA0MDAgUTUwIDM0MCAxNTAgMzYwIFEyNTAgMzQwIDI4MCA0MDAgTDMwMCA0NDAgTDAgNDQwIFoiIGZpbGw9IiMzYTMwMjgiLz4KICAgIAogICAgCiAgICAgICAgPCEtLSBMb25nIHdhdnkgaGFpciAtLT4KICAgICAgICA8ZWxsaXBzZSBjeD0iMTUwIiBjeT0iOTUiIHJ4PSI4MiIgcnk9Ijg4IiBmaWxsPSIjNGEyZTE4Ii8+CiAgICAgICAgPHBhdGggZD0iTTY4IDEzMCBRNTUgMjAwIDYyIDI4MCBRNzAgMzIwIDg1IDM1MCBMOTAgMzU1IFE4MCAzMTAgNzggMjYwIFE3NSAxOTAgODIgMTQwIFoiIGZpbGw9IiM0YTJlMTgiLz4KICAgICAgICA8cGF0aCBkPSJNMjMyIDEzMCBRMjQ1IDIwMCAyMzggMjgwIFEyMzAgMzIwIDIxNSAzNTAgTDIxMCAzNTUgUTIyMCAzMTAgMjIyIDI2MCBRMjI1IDE5MCAyMTggMTQwIFoiIGZpbGw9IiM0YTJlMTgiLz4KICAgICAgICA8cGF0aCBkPSJNNjggMjAwIFE2MCAyNDAgNjUgMjgwIFE2MCAyNDAgNzIgMjIwIFoiIGZpbGw9IiM0YTJlMTgiIG9wYWNpdHk9IjAuNyIvPgogICAgICAgIDxwYXRoIGQ9Ik0yMzIgMjAwIFEyNDAgMjQwIDIzNSAyODAgUTI0MCAyNDAgMjI4IDIyMCBaIiBmaWxsPSIjNGEyZTE4IiBvcGFjaXR5PSIwLjciLz4KICAgICAgICAKICAgIAogICAgPCEtLSBOZWNrIC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIxOTUiIHdpZHRoPSI0NCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2Q0YTg4MiIgcng9IjQiLz4KICAgIAogICAgPCEtLSBGYWNlIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjE1OCIgcng9IjY4IiByeT0iNzgiIGZpbGw9IiNkNGE4ODIiLz4KICAgIAogICAgPCEtLSBFYXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjgyIiBjeT0iMTYyIiByeD0iMTAiIHJ5PSIxNCIgZmlsbD0iI2Q0YTg4MiIvPgogICAgPGVsbGlwc2UgY3g9IjIxOCIgY3k9IjE2MiIgcng9IjEwIiByeT0iMTQiIGZpbGw9IiNkNGE4ODIiLz4KICAgIAogICAgPCEtLSBFeWUgYXJlYSBzaGFkb3cgLS0+CiAgICA8ZWxsaXBzZSBjeD0iMTE4IiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2Q0YTg4MiIgb3BhY2l0eT0iMC42Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2Q0YTg4MiIgb3BhY2l0eT0iMC42Ii8+CiAgICAKICAgIDwhLS0gRXllcyAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMTgiIGN5PSIxNDgiIHJ4PSIxNCIgcnk9IjkiIGZpbGw9IndoaXRlIi8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTQiIHJ5PSI5IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTQ5IiByPSI2IiBmaWxsPSIjM2QyYTFhIi8+CiAgICA8Y2lyY2xlIGN4PSIxODQiIGN5PSIxNDkiIHI9IjYiIGZpbGw9IiMzZDJhMWEiLz4KICAgIDxjaXJjbGUgY3g9IjEyMiIgY3k9IjE0NyIgcj0iMiIgZmlsbD0iIzFhMTAwOCIvPgogICAgPGNpcmNsZSBjeD0iMTg2IiBjeT0iMTQ3IiByPSIyIiBmaWxsPSIjMWExMDA4Ii8+CiAgICA8IS0tIEV5ZSBzaGluZSAtLT4KICAgIDxjaXJjbGUgY3g9IjEyNCIgY3k9IjE0NSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTg4IiBjeT0iMTQ1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CiAgICAKICAgIDwhLS0gRXllYnJvd3MgLS0+CiAgICA8cGF0aCBkPSJNMTA0IDEzNSBRMTE4IDEyOCAxMzIgMTMzIiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTY4IDEzMyBRMTgyIDEyOCAxOTYgMTM1IiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAKICAgIDwhLS0gTm9zZSAtLT4KICAgIDxwYXRoIGQ9Ik0xNTAgMTU4IFExNDUgMTc1IDEzOCAxODIgUTE1MCAxODYgMTYyIDE4MiBRMTU1IDE3NSAxNTAgMTU4IiBmaWxsPSIjZDRhODgyIiBzdHJva2U9IiNkNGE4ODIiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPGVsbGlwc2UgY3g9IjE0MSIgY3k9IjE4MCIgcng9IjYiIHJ5PSI0IiBmaWxsPSIjMDAwMDAwMTUiLz4KICAgIDxlbGxpcHNlIGN4PSIxNTkiIGN5PSIxODAiIHJ4PSI2IiByeT0iNCIgZmlsbD0iIzAwMDAwMDE1Ii8+CiAgICAKICAgIDwhLS0gTW91dGggLS0+CiAgICA8cGF0aCBkPSJNMTMyIDE5NiBRMTUwIDIwNiAxNjggMTk2IiBzdHJva2U9IiNjNDg3N2EiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMzcgMTk2IFExNTAgMTkyIDE2MyAxOTYiIHN0cm9rZT0iI2U4YTg5OCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiLz4KICAgIAogICAgPCEtLSBTdWJ0bGUgc21pbGUgbGluZXMgLS0+CiAgICA8cGF0aCBkPSJNMTMwIDE5MiBRMTI2IDE5OCAxMjggMjA1IiBzdHJva2U9IiNkNGE4ODIiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8cGF0aCBkPSJNMTcwIDE5MiBRMTc0IDE5OCAxNzIgMjA1IiBzdHJva2U9IiNkNGE4ODIiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICAKICAgIDwhLS0gTGlnaHRpbmcgb3ZlcmxheSAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMjAiIGN5PSIxMzAiIHJ4PSI1MCIgcnk9IjYwIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4wNiIvPgogICAgCiAgICA8IS0tIE5hbWUgbGFiZWwgLS0+CiAgICA8cmVjdCB4PSIwIiB5PSIzNTUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDUiIGZpbGw9IiMwMDAwMDA0MCIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIzODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0U4RDVCNyIgb3BhY2l0eT0iMC45Ij5Kb3JkYW4gRWxsaXM8L3RleHQ+CiAgICAKICAgIDxkZWZzPgogICAgICAgIDxmaWx0ZXIgaWQ9ImdyYWluIj4KICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgICAgICAgICAgPGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgogICAgICAgIDwvZmlsdGVyPgogICAgPC9kZWZzPgogICAgPC9zdmc+"); }
+    .coach-photo-craig  { background: #7A6050; }
+    .coach-photo-avery  { background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMzAwIDQwMCI+CiAgICA8IS0tIEJhY2tncm91bmQgLS0+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzdhODg5OCIvPgogICAgCiAgICA8IS0tIFN1YnRsZSB0ZXh0dXJlIC0tPgogICAgPHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZ3JhaW4pIiBvcGFjaXR5PSIwLjMiLz4KICAgIAogICAgPCEtLSBCb2R5IC8gU2hvdWxkZXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjQyMCIgcng9IjEzMCIgcnk9IjkwIiBmaWxsPSIjYzhhMDcwIiBvcGFjaXR5PSIwLjkiLz4KICAgIAogICAgPCEtLSBDbG90aGluZyAtLT4KICAgIDxwYXRoIGQ9Ik0yMCA0MDAgUTUwIDM0MCAxNTAgMzYwIFEyNTAgMzQwIDI4MCA0MDAgTDMwMCA0NDAgTDAgNDQwIFoiIGZpbGw9IiMzYTMwMjgiLz4KICAgIAogICAgCiAgICAgICAgPCEtLSBNZWRpdW0gc2lkZSBwYXJ0IC0tPgogICAgICAgIDxlbGxpcHNlIGN4PSIxNTAiIGN5PSI5MCIgcng9IjgwIiByeT0iNzYiIGZpbGw9IiM2YjQwMjAiLz4KICAgICAgICA8cGF0aCBkPSJNNzAgMTAwIFE2OCAxMzAgNzIgMTYwIFE3NiAxNDAgODAgMTIwIFoiIGZpbGw9IiM2YjQwMjAiLz4KICAgICAgICA8cGF0aCBkPSJNMjMwIDEwMCBRMjMyIDEzMCAyMjggMTYwIFEyMjQgMTQwIDIyMCAxMjAgWiIgZmlsbD0iIzZiNDAyMCIvPgogICAgICAgIDxwYXRoIGQ9Ik03MCA4OCBRMTAwIDc1IDE1NSA4MiIgc3Ryb2tlPSIjNmI0MDIwIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KICAgICAgICAKICAgIAogICAgPCEtLSBOZWNrIC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIxOTUiIHdpZHRoPSI0NCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2M4YTA3MCIgcng9IjQiLz4KICAgIAogICAgPCEtLSBGYWNlIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjE1OCIgcng9IjY4IiByeT0iNzgiIGZpbGw9IiNjOGEwNzAiLz4KICAgIAogICAgPCEtLSBFYXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjgyIiBjeT0iMTYyIiByeD0iMTAiIHJ5PSIxNCIgZmlsbD0iI2M4YTA3MCIvPgogICAgPGVsbGlwc2UgY3g9IjIxOCIgY3k9IjE2MiIgcng9IjEwIiByeT0iMTQiIGZpbGw9IiNjOGEwNzAiLz4KICAgIAogICAgPCEtLSBFeWUgYXJlYSBzaGFkb3cgLS0+CiAgICA8ZWxsaXBzZSBjeD0iMTE4IiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2M4YTA3MCIgb3BhY2l0eT0iMC42Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2M4YTA3MCIgb3BhY2l0eT0iMC42Ii8+CiAgICAKICAgIDwhLS0gRXllcyAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMTgiIGN5PSIxNDgiIHJ4PSIxNCIgcnk9IjkiIGZpbGw9IndoaXRlIi8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTQiIHJ5PSI5IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTQ5IiByPSI2IiBmaWxsPSIjM2QyYTFhIi8+CiAgICA8Y2lyY2xlIGN4PSIxODQiIGN5PSIxNDkiIHI9IjYiIGZpbGw9IiMzZDJhMWEiLz4KICAgIDxjaXJjbGUgY3g9IjEyMiIgY3k9IjE0NyIgcj0iMiIgZmlsbD0iIzFhMTAwOCIvPgogICAgPGNpcmNsZSBjeD0iMTg2IiBjeT0iMTQ3IiByPSIyIiBmaWxsPSIjMWExMDA4Ii8+CiAgICA8IS0tIEV5ZSBzaGluZSAtLT4KICAgIDxjaXJjbGUgY3g9IjEyNCIgY3k9IjE0NSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTg4IiBjeT0iMTQ1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CiAgICAKICAgIDwhLS0gRXllYnJvd3MgLS0+CiAgICA8cGF0aCBkPSJNMTA0IDEzNSBRMTE4IDEyOCAxMzIgMTMzIiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTY4IDEzMyBRMTgyIDEyOCAxOTYgMTM1IiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAKICAgIDwhLS0gTm9zZSAtLT4KICAgIDxwYXRoIGQ9Ik0xNTAgMTU4IFExNDUgMTc1IDEzOCAxODIgUTE1MCAxODYgMTYyIDE4MiBRMTU1IDE3NSAxNTAgMTU4IiBmaWxsPSIjYzhhMDcwIiBzdHJva2U9IiNjOGEwNzAiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPGVsbGlwc2UgY3g9IjE0MSIgY3k9IjE4MCIgcng9IjYiIHJ5PSI0IiBmaWxsPSIjMDAwMDAwMTUiLz4KICAgIDxlbGxpcHNlIGN4PSIxNTkiIGN5PSIxODAiIHJ4PSI2IiByeT0iNCIgZmlsbD0iIzAwMDAwMDE1Ii8+CiAgICAKICAgIDwhLS0gTW91dGggLS0+CiAgICA8cGF0aCBkPSJNMTMyIDE5NiBRMTUwIDIwNiAxNjggMTk2IiBzdHJva2U9IiNjNDg3N2EiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMzcgMTk2IFExNTAgMTkyIDE2MyAxOTYiIHN0cm9rZT0iI2U4YTg5OCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiLz4KICAgIAogICAgPCEtLSBTdWJ0bGUgc21pbGUgbGluZXMgLS0+CiAgICA8cGF0aCBkPSJNMTMwIDE5MiBRMTI2IDE5OCAxMjggMjA1IiBzdHJva2U9IiNjOGEwNzAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8cGF0aCBkPSJNMTcwIDE5MiBRMTc0IDE5OCAxNzIgMjA1IiBzdHJva2U9IiNjOGEwNzAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICAKICAgIDwhLS0gTGlnaHRpbmcgb3ZlcmxheSAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMjAiIGN5PSIxMzAiIHJ4PSI1MCIgcnk9IjYwIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4wNiIvPgogICAgCiAgICA8IS0tIE5hbWUgbGFiZWwgLS0+CiAgICA8cmVjdCB4PSIwIiB5PSIzNTUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDUiIGZpbGw9IiMwMDAwMDA0MCIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIzODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0U4RDVCNyIgb3BhY2l0eT0iMC45Ij5BdmVyeSBNb3JnYW48L3RleHQ+CiAgICAKICAgIDxkZWZzPgogICAgICAgIDxmaWx0ZXIgaWQ9ImdyYWluIj4KICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgICAgICAgICAgPGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgogICAgICAgIDwvZmlsdGVyPgogICAgPC9kZWZzPgogICAgPC9zdmc+"); }
+    .coach-bio-text h3 {
+      font-family: var(--ff-display); font-size: 1.8rem; font-weight: 400;
+      color: var(--deep); margin-bottom: 0.25rem;
+    }
+    .coach-role-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 1.25rem;
+    }
+    .coach-bio-text p {
+      font-size: 0.95rem; line-height: 1.85; color: var(--muted);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+    .coach-bio-text p:last-child { margin-bottom: 0; }
 
     /* COACHING NOTE */
     .coaching-note {
@@ -320,37 +333,45 @@
     </div>
   </div>
 
-  <div class="team-preview">
+  <div class="team-full">
     <p class="section-label">The Team</p>
     <h2>Three coaches. One commitment.</h2>
-    <p>Every coach at Table Rock Wellness brings their own background and style — but the same core philosophy. Find the right fit for where you are.</p>
-    <div class="team-row">
-      <div class="tp-card">
-        <div class="tp-photo tp-photo-1"></div>
-        <div class="tp-info">
-          <h4>Craig Sweigart</h4>
-          <span>Founder · Couples &amp; Individuals</span><br/>
-          <span class="tp-avail open">Accepting Clients</span>
+    <p class="team-intro">Every coach at Table Rock Wellness brings their own background and specialty — but the same grounded philosophy. We believe real change starts with self-awareness and grows through empathy.</p>
+
+    <div class="coach-grid">
+
+      <div class="coach-bio-card">
+        <div class="coach-photo coach-photo-jordan"></div>
+        <div class="coach-bio-text">
+          <h3>Jordan Ellis</h3>
+          <p class="coach-role-label">Relationship Coach</p>
+          <p>Jordan came to coaching through her own experience navigating the end of a long-term relationship — and the slow, clarifying work of rebuilding afterward. That experience gave her something rare: a genuine understanding of what it feels like to be on the other side of a relationship in crisis.</p>
+          <p>She works primarily with individuals — people who are processing separation or divorce, trying to understand why their relationships haven't worked, or preparing to show up differently in what comes next. Her style is warm, unhurried, and deeply focused on helping clients develop the self-awareness that makes lasting change possible.</p>
         </div>
       </div>
-      <div class="tp-card">
-        <div class="tp-photo tp-photo-2"></div>
-        <div class="tp-info">
-          <h4>Jordan Ellis</h4>
-          <span>Individual Coaching</span><br/>
-          <span class="tp-avail waitlist">Waitlist Only</span>
+
+      <div class="coach-bio-card">
+        <div class="coach-photo coach-photo-craig"></div>
+        <div class="coach-bio-text">
+          <h3>Craig Sweigart</h3>
+          <p class="coach-role-label">Relationship Coach</p>
+          <p>Craig founded Table Rock Wellness on a straightforward belief: most couples in conflict aren't failing for lack of love. They're failing because they've lost the ability to see themselves clearly — and each other honestly.</p>
+          <p>With a background in communications, philosophy, and psychology, Craig works with both couples and individuals navigating conflict, disconnection, and the hard work of choosing each other again. His approach is grounded and direct — he helps clients understand their own patterns, build genuine empathy for their partner's experience, and find the willingness to engage differently.</p>
         </div>
       </div>
-      <div class="tp-card">
-        <div class="tp-photo tp-photo-3"></div>
-        <div class="tp-info">
-          <h4>Avery Morgan</h4>
-          <span>Couples Communication</span><br/>
-          <span class="tp-avail waitlist">Waitlist Only</span>
+
+      <div class="coach-bio-card">
+        <div class="coach-photo coach-photo-avery"></div>
+        <div class="coach-bio-text">
+          <h3>Avery Morgan</h3>
+          <p class="coach-role-label">Relationship Coach</p>
+          <p>Avery spent years working in organizational conflict resolution before realizing that the dynamics she saw in workplace teams — communication breakdowns, entrenched patterns, defensive reactivity — were identical to what she saw in couples. That insight became the foundation of her approach.</p>
+          <p>She works almost exclusively with couples, and her style is structured and practical. Clients leave her sessions with concrete tools, not just insights. She's particularly effective with couples who feel like they've tried everything — the ones who need someone to help them see that the pattern, not the people, is the problem.</p>
         </div>
       </div>
+
     </div>
-    <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--muted);"><a href="index.html#team" style="color:var(--warm);text-decoration:none;">Meet the full team and book your coach →</a></p>
+    <p style="margin-top:3rem;font-size:0.85rem;color:var(--muted);"><a href="index.html#team" style="color:var(--warm);text-decoration:none;">Book with a coach →</a></p>
   </div>
 
   <div class="coaching-note">
@@ -391,7 +412,7 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:hello@tablerockwellness.com">hello@tablerockwellness.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#68000d040407281c090a040d1a070b031f0d0404060d1b1b460b0705"><span class="__cf_email__" data-cfemail="78101d141417380c191a141d0a171b130f1d1414161d0b0b561b1715">[email&#160;protected]</span></a></li>
         <li><a href="contact.html">Send a Message</a></li>
         <li><a href="">Boise, Idaho</a></li>
       </ul>
@@ -407,11 +428,4 @@
   </div>
 </footer>
 
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  });
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-
