@@ -411,68 +411,179 @@
 
     .team-availability {
       display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
-      border-radius: 2px;
-      margin-bottom: 1rem;
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1rem;
     }
     .avail-open { background: var(--sage); color: var(--white); }
     .avail-waitlist { background: rgba(196,168,130,0.2); color: var(--stone); }
 
     .team-book-btn {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sandstone);
-      border: 1px solid rgba(196,168,130,0.4);
-      padding: 0.55rem 1.25rem;
-      border-radius: 2px;
-      cursor: pointer;
-      background: transparent;
-      transition: background 0.2s, border-color 0.2s;
+      display: inline-block; margin-top: 1rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sandstone); border: 1px solid rgba(196,168,130,0.4);
+      padding: 0.55rem 1.25rem; border-radius: 2px; cursor: pointer;
+      background: transparent; transition: background 0.2s, border-color 0.2s;
       font-family: var(--ff-body);
     }
     .team-book-btn:hover { background: rgba(196,168,130,0.15); border-color: var(--stone); }
     .team-book-btn.primary { background: var(--stone); border-color: var(--stone); color: var(--deep); }
     .team-book-btn.primary:hover { background: var(--sandstone); }
 
-    .waitlist-msg {
-      display: none;
-      margin-top: 1rem;
-      padding: 1rem;
-      background: rgba(196,168,130,0.1);
-      border-left: 2px solid var(--stone);
-      text-align: left;
-      border-radius: 2px;
+    /* MODAL OVERLAY */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(44,36,24,0.7); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 2rem;
     }
-    .waitlist-msg p {
-      font-size: 0.8rem;
-      color: rgba(232,213,183,0.75);
-      line-height: 1.6;
-      margin-bottom: 0.75rem;
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--cream); max-width: 520px; width: 100%;
+      border-radius: 4px; overflow: hidden;
+      animation: modalIn 0.3s ease;
     }
-    .waitlist-msg .craig-btn {
-      display: inline-block;
-      background: var(--stone);
-      color: var(--deep);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.55rem 1.25rem;
-      border-radius: 2px;
-      border: none;
-      cursor: pointer;
-      font-family: var(--ff-body);
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-header {
+      background: var(--deep); padding: 2rem 2.5rem 1.5rem;
+      position: relative;
+    }
+    .modal-header .coach-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--stone); margin-bottom: 0.5rem;
+    }
+    .modal-header h3 {
+      font-family: var(--ff-display); font-size: 1.6rem; font-weight: 300;
+      color: var(--sandstone); line-height: 1.2;
+    }
+    .modal-header h3 em { font-style: italic; color: var(--stone); }
+    .modal-close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      background: none; border: none; color: rgba(232,213,183,0.4);
+      font-size: 1.5rem; cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--sandstone); }
+
+    /* FORM STEPS */
+    .modal-body { padding: 2rem 2.5rem; }
+
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+
+    .form-step p {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 1.5rem; font-weight: 300;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; padding: 0.8rem 1rem;
+      font-family: var(--ff-body); font-size: 0.95rem;
+      color: var(--text); background: var(--white);
+      border: 1px solid rgba(196,168,130,0.4); border-radius: 2px;
+      outline: none; transition: border-color 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--stone); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .modal-btn {
+      width: 100%; padding: 0.9rem;
+      background: var(--warm); color: var(--white);
+      border: none; cursor: pointer; font-family: var(--ff-body);
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; border-radius: 2px;
+      transition: background 0.2s; margin-top: 0.5rem;
+    }
+    .modal-btn:hover { background: var(--deep); }
+
+    /* MATCH SCREEN */
+    .match-screen { text-align: center; padding: 0.5rem 0; }
+    .match-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .match-screen h4 {
+      font-family: var(--ff-display); font-size: 1.5rem;
+      font-weight: 400; color: var(--deep); margin-bottom: 0.75rem;
+    }
+    .match-screen p {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.75;
+      font-weight: 300; margin-bottom: 0;
+    }
+
+    .match-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.75rem; }
+
+    .btn-book-craig {
+      width: 100%; padding: 0.9rem;
+      background: var(--warm); color: var(--white);
+      border: none; cursor: pointer; font-family: var(--ff-body);
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; border-radius: 2px;
       transition: background 0.2s;
     }
-    .waitlist-msg .craig-btn:hover { background: var(--sandstone); }
+    .btn-book-craig:hover { background: var(--deep); }
+
+    .btn-waitlist-instead {
+      width: 100%; padding: 0.75rem;
+      background: transparent; color: var(--muted);
+      border: 1px solid rgba(196,168,130,0.35); cursor: pointer;
+      font-family: var(--ff-body); font-size: 0.78rem;
+      font-weight: 400; border-radius: 2px; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-waitlist-instead:hover { border-color: var(--stone); color: var(--warm); }
+
+    /* WAITLIST CONFIRM */
+    .waitlist-confirm { text-align: center; padding: 0.5rem 0; }
+    .waitlist-confirm h4 {
+      font-family: var(--ff-display); font-size: 1.4rem;
+      font-weight: 400; color: var(--deep); margin-bottom: 0.75rem;
+    }
+    .waitlist-confirm p {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.75;
+      font-weight: 300; margin-bottom: 1.25rem;
+    }
+    .waitlist-email-group { margin-bottom: 1rem; text-align: left; }
+    .waitlist-email-group label {
+      display: block; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .waitlist-email-group input {
+      width: 100%; padding: 0.8rem 1rem;
+      font-family: var(--ff-body); font-size: 0.95rem;
+      color: var(--text); background: var(--white);
+      border: 1px solid rgba(196,168,130,0.4); border-radius: 2px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .waitlist-email-group input:focus { border-color: var(--stone); }
+
+    /* DONE SCREEN */
+    .done-screen { text-align: center; padding: 1rem 0 0.5rem; }
+    .done-screen .done-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .done-screen h4 {
+      font-family: var(--ff-display); font-size: 1.5rem;
+      font-weight: 400; color: var(--deep); margin-bottom: 0.75rem;
+    }
+    .done-screen p {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.75;
+      font-weight: 300; margin-bottom: 1.5rem;
+    }
+    .done-screen .close-done {
+      font-size: 0.78rem; color: var(--stone); background: none;
+      border: none; cursor: pointer; font-family: var(--ff-body);
+      text-decoration: underline;
+    }
 
     .team-photo {
       width: 100%;
@@ -485,6 +596,8 @@
       overflow: hidden;
     }
 
+    .team-photo-jordan { background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMzAwIDQwMCI+CiAgICA8IS0tIEJhY2tncm91bmQgLS0+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzhhOWU4YSIvPgogICAgCiAgICA8IS0tIFN1YnRsZSB0ZXh0dXJlIC0tPgogICAgPHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZ3JhaW4pIiBvcGFjaXR5PSIwLjMiLz4KICAgIAogICAgPCEtLSBCb2R5IC8gU2hvdWxkZXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjQyMCIgcng9IjEzMCIgcnk9IjkwIiBmaWxsPSIjZDRhODgyIiBvcGFjaXR5PSIwLjkiLz4KICAgIAogICAgPCEtLSBDbG90aGluZyAtLT4KICAgIDxwYXRoIGQ9Ik0yMCA0MDAgUTUwIDM0MCAxNTAgMzYwIFEyNTAgMzQwIDI4MCA0MDAgTDMwMCA0NDAgTDAgNDQwIFoiIGZpbGw9IiMzYTMwMjgiLz4KICAgIAogICAgCiAgICAgICAgPCEtLSBMb25nIHdhdnkgaGFpciAtLT4KICAgICAgICA8ZWxsaXBzZSBjeD0iMTUwIiBjeT0iOTUiIHJ4PSI4MiIgcnk9Ijg4IiBmaWxsPSIjNGEyZTE4Ii8+CiAgICAgICAgPHBhdGggZD0iTTY4IDEzMCBRNTUgMjAwIDYyIDI4MCBRNzAgMzIwIDg1IDM1MCBMOTAgMzU1IFE4MCAzMTAgNzggMjYwIFE3NSAxOTAgODIgMTQwIFoiIGZpbGw9IiM0YTJlMTgiLz4KICAgICAgICA8cGF0aCBkPSJNMjMyIDEzMCBRMjQ1IDIwMCAyMzggMjgwIFEyMzAgMzIwIDIxNSAzNTAgTDIxMCAzNTUgUTIyMCAzMTAgMjIyIDI2MCBRMjI1IDE5MCAyMTggMTQwIFoiIGZpbGw9IiM0YTJlMTgiLz4KICAgICAgICA8cGF0aCBkPSJNNjggMjAwIFE2MCAyNDAgNjUgMjgwIFE2MCAyNDAgNzIgMjIwIFoiIGZpbGw9IiM0YTJlMTgiIG9wYWNpdHk9IjAuNyIvPgogICAgICAgIDxwYXRoIGQ9Ik0yMzIgMjAwIFEyNDAgMjQwIDIzNSAyODAgUTI0MCAyNDAgMjI4IDIyMCBaIiBmaWxsPSIjNGEyZTE4IiBvcGFjaXR5PSIwLjciLz4KICAgICAgICAKICAgIAogICAgPCEtLSBOZWNrIC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIxOTUiIHdpZHRoPSI0NCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2Q0YTg4MiIgcng9IjQiLz4KICAgIAogICAgPCEtLSBGYWNlIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjE1OCIgcng9IjY4IiByeT0iNzgiIGZpbGw9IiNkNGE4ODIiLz4KICAgIAogICAgPCEtLSBFYXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjgyIiBjeT0iMTYyIiByeD0iMTAiIHJ5PSIxNCIgZmlsbD0iI2Q0YTg4MiIvPgogICAgPGVsbGlwc2UgY3g9IjIxOCIgY3k9IjE2MiIgcng9IjEwIiByeT0iMTQiIGZpbGw9IiNkNGE4ODIiLz4KICAgIAogICAgPCEtLSBFeWUgYXJlYSBzaGFkb3cgLS0+CiAgICA8ZWxsaXBzZSBjeD0iMTE4IiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2Q0YTg4MiIgb3BhY2l0eT0iMC42Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2Q0YTg4MiIgb3BhY2l0eT0iMC42Ii8+CiAgICAKICAgIDwhLS0gRXllcyAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMTgiIGN5PSIxNDgiIHJ4PSIxNCIgcnk9IjkiIGZpbGw9IndoaXRlIi8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTQiIHJ5PSI5IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTQ5IiByPSI2IiBmaWxsPSIjM2QyYTFhIi8+CiAgICA8Y2lyY2xlIGN4PSIxODQiIGN5PSIxNDkiIHI9IjYiIGZpbGw9IiMzZDJhMWEiLz4KICAgIDxjaXJjbGUgY3g9IjEyMiIgY3k9IjE0NyIgcj0iMiIgZmlsbD0iIzFhMTAwOCIvPgogICAgPGNpcmNsZSBjeD0iMTg2IiBjeT0iMTQ3IiByPSIyIiBmaWxsPSIjMWExMDA4Ii8+CiAgICA8IS0tIEV5ZSBzaGluZSAtLT4KICAgIDxjaXJjbGUgY3g9IjEyNCIgY3k9IjE0NSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTg4IiBjeT0iMTQ1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CiAgICAKICAgIDwhLS0gRXllYnJvd3MgLS0+CiAgICA8cGF0aCBkPSJNMTA0IDEzNSBRMTE4IDEyOCAxMzIgMTMzIiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTY4IDEzMyBRMTgyIDEyOCAxOTYgMTM1IiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAKICAgIDwhLS0gTm9zZSAtLT4KICAgIDxwYXRoIGQ9Ik0xNTAgMTU4IFExNDUgMTc1IDEzOCAxODIgUTE1MCAxODYgMTYyIDE4MiBRMTU1IDE3NSAxNTAgMTU4IiBmaWxsPSIjZDRhODgyIiBzdHJva2U9IiNkNGE4ODIiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPGVsbGlwc2UgY3g9IjE0MSIgY3k9IjE4MCIgcng9IjYiIHJ5PSI0IiBmaWxsPSIjMDAwMDAwMTUiLz4KICAgIDxlbGxpcHNlIGN4PSIxNTkiIGN5PSIxODAiIHJ4PSI2IiByeT0iNCIgZmlsbD0iIzAwMDAwMDE1Ii8+CiAgICAKICAgIDwhLS0gTW91dGggLS0+CiAgICA8cGF0aCBkPSJNMTMyIDE5NiBRMTUwIDIwNiAxNjggMTk2IiBzdHJva2U9IiNjNDg3N2EiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMzcgMTk2IFExNTAgMTkyIDE2MyAxOTYiIHN0cm9rZT0iI2U4YTg5OCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiLz4KICAgIAogICAgPCEtLSBTdWJ0bGUgc21pbGUgbGluZXMgLS0+CiAgICA8cGF0aCBkPSJNMTMwIDE5MiBRMTI2IDE5OCAxMjggMjA1IiBzdHJva2U9IiNkNGE4ODIiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8cGF0aCBkPSJNMTcwIDE5MiBRMTc0IDE5OCAxNzIgMjA1IiBzdHJva2U9IiNkNGE4ODIiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICAKICAgIDwhLS0gTGlnaHRpbmcgb3ZlcmxheSAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMjAiIGN5PSIxMzAiIHJ4PSI1MCIgcnk9IjYwIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4wNiIvPgogICAgCiAgICA8IS0tIE5hbWUgbGFiZWwgLS0+CiAgICA8cmVjdCB4PSIwIiB5PSIzNTUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDUiIGZpbGw9IiMwMDAwMDA0MCIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIzODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0U4RDVCNyIgb3BhY2l0eT0iMC45Ij5Kb3JkYW4gRWxsaXM8L3RleHQ+CiAgICAKICAgIDxkZWZzPgogICAgICAgIDxmaWx0ZXIgaWQ9ImdyYWluIj4KICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgICAgICAgICAgPGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgogICAgICAgIDwvZmlsdGVyPgogICAgPC9kZWZzPgogICAgPC9zdmc+"); }
+    .team-photo-avery  { background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMzAwIDQwMCI+CiAgICA8IS0tIEJhY2tncm91bmQgLS0+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzdhODg5OCIvPgogICAgCiAgICA8IS0tIFN1YnRsZSB0ZXh0dXJlIC0tPgogICAgPHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZ3JhaW4pIiBvcGFjaXR5PSIwLjMiLz4KICAgIAogICAgPCEtLSBCb2R5IC8gU2hvdWxkZXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjQyMCIgcng9IjEzMCIgcnk9IjkwIiBmaWxsPSIjYzhhMDcwIiBvcGFjaXR5PSIwLjkiLz4KICAgIAogICAgPCEtLSBDbG90aGluZyAtLT4KICAgIDxwYXRoIGQ9Ik0yMCA0MDAgUTUwIDM0MCAxNTAgMzYwIFEyNTAgMzQwIDI4MCA0MDAgTDMwMCA0NDAgTDAgNDQwIFoiIGZpbGw9IiMzYTMwMjgiLz4KICAgIAogICAgCiAgICAgICAgPCEtLSBNZWRpdW0gc2lkZSBwYXJ0IC0tPgogICAgICAgIDxlbGxpcHNlIGN4PSIxNTAiIGN5PSI5MCIgcng9IjgwIiByeT0iNzYiIGZpbGw9IiM2YjQwMjAiLz4KICAgICAgICA8cGF0aCBkPSJNNzAgMTAwIFE2OCAxMzAgNzIgMTYwIFE3NiAxNDAgODAgMTIwIFoiIGZpbGw9IiM2YjQwMjAiLz4KICAgICAgICA8cGF0aCBkPSJNMjMwIDEwMCBRMjMyIDEzMCAyMjggMTYwIFEyMjQgMTQwIDIyMCAxMjAgWiIgZmlsbD0iIzZiNDAyMCIvPgogICAgICAgIDxwYXRoIGQ9Ik03MCA4OCBRMTAwIDc1IDE1NSA4MiIgc3Ryb2tlPSIjNmI0MDIwIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KICAgICAgICAKICAgIAogICAgPCEtLSBOZWNrIC0tPgogICAgPHJlY3QgeD0iMTI4IiB5PSIxOTUiIHdpZHRoPSI0NCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2M4YTA3MCIgcng9IjQiLz4KICAgIAogICAgPCEtLSBGYWNlIC0tPgogICAgPGVsbGlwc2UgY3g9IjE1MCIgY3k9IjE1OCIgcng9IjY4IiByeT0iNzgiIGZpbGw9IiNjOGEwNzAiLz4KICAgIAogICAgPCEtLSBFYXJzIC0tPgogICAgPGVsbGlwc2UgY3g9IjgyIiBjeT0iMTYyIiByeD0iMTAiIHJ5PSIxNCIgZmlsbD0iI2M4YTA3MCIvPgogICAgPGVsbGlwc2UgY3g9IjIxOCIgY3k9IjE2MiIgcng9IjEwIiByeT0iMTQiIGZpbGw9IiNjOGEwNzAiLz4KICAgIAogICAgPCEtLSBFeWUgYXJlYSBzaGFkb3cgLS0+CiAgICA8ZWxsaXBzZSBjeD0iMTE4IiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2M4YTA3MCIgb3BhY2l0eT0iMC42Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTgiIHJ5PSIxMiIgZmlsbD0iI2M4YTA3MCIgb3BhY2l0eT0iMC42Ii8+CiAgICAKICAgIDwhLS0gRXllcyAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMTgiIGN5PSIxNDgiIHJ4PSIxNCIgcnk9IjkiIGZpbGw9IndoaXRlIi8+CiAgICA8ZWxsaXBzZSBjeD0iMTgyIiBjeT0iMTQ4IiByeD0iMTQiIHJ5PSI5IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTQ5IiByPSI2IiBmaWxsPSIjM2QyYTFhIi8+CiAgICA8Y2lyY2xlIGN4PSIxODQiIGN5PSIxNDkiIHI9IjYiIGZpbGw9IiMzZDJhMWEiLz4KICAgIDxjaXJjbGUgY3g9IjEyMiIgY3k9IjE0NyIgcj0iMiIgZmlsbD0iIzFhMTAwOCIvPgogICAgPGNpcmNsZSBjeD0iMTg2IiBjeT0iMTQ3IiByPSIyIiBmaWxsPSIjMWExMDA4Ii8+CiAgICA8IS0tIEV5ZSBzaGluZSAtLT4KICAgIDxjaXJjbGUgY3g9IjEyNCIgY3k9IjE0NSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgogICAgPGNpcmNsZSBjeD0iMTg4IiBjeT0iMTQ1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CiAgICAKICAgIDwhLS0gRXllYnJvd3MgLS0+CiAgICA8cGF0aCBkPSJNMTA0IDEzNSBRMTE4IDEyOCAxMzIgMTMzIiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTY4IDEzMyBRMTgyIDEyOCAxOTYgMTM1IiBzdHJva2U9IiM0YTMwMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAKICAgIDwhLS0gTm9zZSAtLT4KICAgIDxwYXRoIGQ9Ik0xNTAgMTU4IFExNDUgMTc1IDEzOCAxODIgUTE1MCAxODYgMTYyIDE4MiBRMTU1IDE3NSAxNTAgMTU4IiBmaWxsPSIjYzhhMDcwIiBzdHJva2U9IiNjOGEwNzAiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPGVsbGlwc2UgY3g9IjE0MSIgY3k9IjE4MCIgcng9IjYiIHJ5PSI0IiBmaWxsPSIjMDAwMDAwMTUiLz4KICAgIDxlbGxpcHNlIGN4PSIxNTkiIGN5PSIxODAiIHJ4PSI2IiByeT0iNCIgZmlsbD0iIzAwMDAwMDE1Ii8+CiAgICAKICAgIDwhLS0gTW91dGggLS0+CiAgICA8cGF0aCBkPSJNMTMyIDE5NiBRMTUwIDIwNiAxNjggMTk2IiBzdHJva2U9IiNjNDg3N2EiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMzcgMTk2IFExNTAgMTkyIDE2MyAxOTYiIHN0cm9rZT0iI2U4YTg5OCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiLz4KICAgIAogICAgPCEtLSBTdWJ0bGUgc21pbGUgbGluZXMgLS0+CiAgICA8cGF0aCBkPSJNMTMwIDE5MiBRMTI2IDE5OCAxMjggMjA1IiBzdHJva2U9IiNjOGEwNzAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICA8cGF0aCBkPSJNMTcwIDE5MiBRMTc0IDE5OCAxNzIgMjA1IiBzdHJva2U9IiNjOGEwNzAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC41Ii8+CiAgICAKICAgIDwhLS0gTGlnaHRpbmcgb3ZlcmxheSAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMjAiIGN5PSIxMzAiIHJ4PSI1MCIgcnk9IjYwIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4wNiIvPgogICAgCiAgICA8IS0tIE5hbWUgbGFiZWwgLS0+CiAgICA8cmVjdCB4PSIwIiB5PSIzNTUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDUiIGZpbGw9IiMwMDAwMDA0MCIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIzODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0U4RDVCNyIgb3BhY2l0eT0iMC45Ij5BdmVyeSBNb3JnYW48L3RleHQ+CiAgICAKICAgIDxkZWZzPgogICAgICAgIDxmaWx0ZXIgaWQ9ImdyYWluIj4KICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgICAgICAgICAgPGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgogICAgICAgIDwvZmlsdGVyPgogICAgPC9kZWZzPgogICAgPC9zdmc+"); }
     .team-photo-1 {
       background-color: #6B5040;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400'%3E%3Crect width='300' height='400' fill='%237A6050'/%3E%3Cellipse cx='150' cy='140' rx='70' ry='80' fill='%23C4A882' opacity='.6'/%3E%3Crect x='50' y='230' width='200' height='170' rx='4' fill='%235A4030' opacity='.5'/%3E%3Ctext x='150' y='330' text-anchor='middle' font-family='Georgia' font-size='13' fill='%23E8D5B7' opacity='.8'%3EStaff Photo 1%3C/text%3E%3C/svg%3E");
@@ -873,42 +986,119 @@
   <div class="team-grid">
 
     <div class="team-card">
+      <div class="team-photo team-photo-jordan"></div>
+      <div class="team-name">Jordan Ellis</div>
+      <div class="team-role">Relationship Coach</div>
+      <p class="team-bio">Jordan specializes in working with individuals navigating the emotional aftermath of relationship breakdown — separation, divorce, and rebuilding after loss. Her approach centers on self-discovery and forward momentum, helping clients understand not just what went wrong, but how to show up differently in the relationships ahead.</p>
+      <button class="team-book-btn" onclick="openBookingModal('Jordan Ellis')">Book with Jordan</button>
+    </div>
+
+    <div class="team-card">
       <div class="team-photo team-photo-1"></div>
-      <span class="team-availability avail-open">Accepting Clients</span>
       <div class="team-name">Craig Sweigart</div>
-      <div class="team-role">Lead Relationship Coach &amp; Founder</div>
-      <p class="team-bio">Craig founded Table Rock Wellness on the belief that most couples in crisis aren't failing for lack of love — they're failing for lack of tools. With a background in communications, philosophy, and psychology, he brings a grounded, empathetic approach to helping couples and individuals break the patterns keeping them stuck. He works with established adults navigating conflict, disconnection, and the hard work of choosing each other again.</p>
+      <div class="team-role">Relationship Coach</div>
+      <p class="team-bio">Craig founded Table Rock Wellness on the belief that most couples in crisis aren't failing for lack of love — they're failing for lack of tools. With a background in communications, philosophy, and psychology, he brings a grounded, empathetic approach to helping couples and individuals break the patterns keeping them stuck.</p>
       <button class="team-book-btn primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Book with Craig</button>
     </div>
 
     <div class="team-card">
-      <div class="team-photo team-photo-2"></div>
-      <span class="team-availability avail-waitlist">Waitlist Only</span>
-      <div class="team-name">Jordan Ellis</div>
-      <div class="team-role">Relationship Coach</div>
-      <p class="team-bio">Jordan specializes in working with individuals navigating the emotional aftermath of relationship breakdown — separation, divorce, and rebuilding after loss. Her approach centers on self-discovery and forward momentum, helping clients understand not just what went wrong, but how to show up differently in the relationships ahead. Jordan brings warmth, patience, and a deep belief in people's capacity to change.</p>
-      <button class="team-book-btn" onclick="showWaitlist('jordan-msg')">Join Jordan's Waitlist</button>
-      <div class="waitlist-msg" id="jordan-msg">
-        <p>Jordan's schedule is currently full. In the meantime, Craig is available now and brings the same commitment to helping you move forward.</p>
-        <button class="craig-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Book a Free Call with Craig</button>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-photo team-photo-3"></div>
-      <span class="team-availability avail-waitlist">Waitlist Only</span>
+      <div class="team-photo team-photo-avery"></div>
       <div class="team-name">Avery Morgan</div>
       <div class="team-role">Relationship Coach</div>
-      <p class="team-bio">Avery works primarily with couples who are committed to staying together but stuck in repeating cycles they can't seem to break. Her approach is structured and practical — she helps couples develop concrete communication tools, identify their specific conflict patterns, and build new habits that hold up outside the coaching room. Clients describe her sessions as challenging in the best possible way.</p>
-      <button class="team-book-btn" onclick="showWaitlist('avery-msg')">Join Avery's Waitlist</button>
-      <div class="waitlist-msg" id="avery-msg">
-        <p>Avery's schedule is currently full. Craig is available now and specializes in exactly the kind of couples work Avery focuses on.</p>
-        <button class="craig-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Book a Free Call with Craig</button>
-      </div>
+      <p class="team-bio">Avery works primarily with couples who are committed to staying together but stuck in repeating cycles they can't seem to break. Her approach is structured and practical — she helps couples develop concrete communication tools, identify their specific conflict patterns, and build new habits that hold up outside the coaching room.</p>
+      <button class="team-book-btn" onclick="openBookingModal('Avery Morgan')">Book with Avery</button>
     </div>
 
   </div>
 </section>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+
+    <div class="modal-header">
+      <p class="modal-coach-tag">Booking Request</p>
+      <h3>Getting started with <em id="modalCoachFirst">Jordan</em></h3>
+      <button class="modal-close" onclick="closeModal()">&#x00D7;</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- STEP 1: INTAKE -->
+      <div class="form-step active" id="step-intake">
+        <p>Tell us a little about what's bringing you here. This helps us make sure you're matched with the right support.</p>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="intake-name" placeholder="First name is fine" />
+        </div>
+        <div class="form-group">
+          <label>What's bringing you here today?</label>
+          <textarea id="intake-reason" placeholder="Share as much or as little as you'd like..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Will you be attending alone or with a partner?</label>
+          <select id="intake-who">
+            <option value="">Select one...</option>
+            <option>Just me</option>
+            <option>With my partner</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>How long has this been a concern?</label>
+          <select id="intake-duration">
+            <option value="">Select one...</option>
+            <option>Just recently</option>
+            <option>A few months</option>
+            <option>Over a year</option>
+            <option>For as long as I can remember</option>
+          </select>
+        </div>
+        <button class="modal-submit" onclick="showMatchScreen()">Request Appointment &rarr;</button>
+      </div>
+
+      <!-- STEP 2: MATCH -->
+      <div class="form-step" id="step-match">
+        <div class="match-screen">
+          <div class="match-icon">&#x1F91D;</div>
+          <h4>We've found your match</h4>
+          <p>Thank you for sharing that. <span class="js-coach-name">Jordan</span> is currently full, but based on what you've told us, Craig Sweigart — our lead coach — works with exactly this kind of situation and has immediate availability.</p>
+          <button class="btn-book-craig" onclick="bookWithCraig()">Book a Free Call with Craig</button>
+          <button class="btn-join-waitlist" onclick="showWaitlistScreen()">I'd prefer to wait for <span class="js-coach-name">Jordan</span></button>
+        </div>
+      </div>
+
+      <!-- STEP 3: WAITLIST -->
+      <div class="form-step" id="step-waitlist">
+        <div class="waitlist-screen">
+          <h4>Join <span class="js-coach-name">Jordan</span>'s waitlist</h4>
+          <p>We'll reach out as soon as a spot opens up. Craig is always available for a free 20-minute call in the meantime — no obligation.</p>
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="wl-name" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label>Your Email Address</label>
+            <input type="email" id="wl-email" placeholder="you@email.com" />
+          </div>
+          <button class="modal-submit" onclick="submitWaitlist()">Add Me to the Waitlist</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: DONE -->
+      <div class="form-step" id="step-done">
+        <div class="done-screen">
+          <div class="done-icon">&#x2713;</div>
+          <h4>You're on the list</h4>
+          <p>We'll be in touch as soon as a spot opens with <span class="js-coach-name">Jordan</span>. Craig is always available for a free call if you'd like to get started sooner.</p>
+          <button class="btn-book-craig" onclick="bookWithCraig()">Book a Free Call with Craig</button>
+          <button class="btn-close-modal" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- PROCESS -->
 <section class="process" id="process">
@@ -1006,7 +1196,7 @@
       <div class="footer-col-title">Contact</div>
       <ul class="footer-links">
         <li><a href="#">Southwest Boise Office</a></li>
-        <li><a href="mailto:hello@tablerockwellness.com">hello@tablerockwellness.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#630b060f0f0c231702010f06110c000814060f0f0d0610104d000c0e"><span class="__cf_email__" data-cfemail="cba3aea7a7a48bbfaaa9a7aeb9a4a8a0bcaea7a7a5aeb8b8e5a8a4a6">[email&#160;protected]</span></a></li>
         <li><a href="#">Virtual Sessions</a></li>
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Facebook</a></li>
@@ -1023,19 +1213,88 @@
   </div>
 
 <script>
-  // Nav scroll effect
+  // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
   });
 
-  // Waitlist redirect logic
-  function showWaitlist(id) {
-    const msg = document.getElementById(id);
-    if (msg) {
-      msg.style.display = msg.style.display === 'block' ? 'none' : 'block';
-    }
+  // Modal state
+  let currentCoach = '';
+
+  function openBookingModal(coachName) {
+    currentCoach = coachName;
+    const firstName = coachName.split(' ')[0];
+    document.getElementById('modalCoachFirst').textContent = firstName;
+    document.querySelectorAll('.js-coach-name').forEach(el => el.textContent = firstName);
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-intake').classList.add('active');
+    document.getElementById('intake-name').value = '';
+    document.getElementById('intake-reason').value = '';
+    document.getElementById('intake-who').value = '';
+    document.getElementById('intake-duration').value = '';
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function goToStep(stepId) {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.getElementById(stepId).classList.add('active');
+  }
+
+  function showMatchScreen() {
+    const name = document.getElementById('intake-name').value.trim();
+    if (!name) { alert('Please enter your name before continuing.'); return; }
+    goToStep('step-match');
+  }
+
+  function showWaitlistScreen() {
+    const name = document.getElementById('intake-name').value.trim();
+    if (name) document.getElementById('wl-name').value = name;
+    goToStep('step-waitlist');
+  }
+
+  function bookWithCraig() {
+    closeModal();
+    Calendly.initPopupWidget({url: 'https://calendly.com/hello-tablerockwellness/30min'});
+  }
+
+  function submitWaitlist() {
+    const name = document.getElementById('wl-name').value.trim();
+    const email = document.getElementById('wl-email').value.trim();
+    const reason = document.getElementById('intake-reason').value.trim();
+    const who = document.getElementById('intake-who').value;
+    const duration = document.getElementById('intake-duration').value;
+
+    if (!email) { alert('Please enter your email address.'); return; }
+
+    // Send waitlist email via Formspree — replace YOUR_FORM_ID with your actual ID
+    fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        subject: 'Waitlist Request — ' + currentCoach,
+        name: name,
+        email: email,
+        coach: currentCoach,
+        reason: reason,
+        attending: who,
+        duration: duration
+      })
+    }).catch(() => {}); // Fail silently — show confirmation regardless
+
+    goToStep('step-done');
   }
 </script>
+</footer>
 </body>
 </html>

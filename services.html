@@ -32,48 +32,34 @@
       overflow-x: hidden;
     }
 
-    /* NAV */
+    /* NAV — matches index.html */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(253,250,246,0.95);
+      background: rgba(250,247,242,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(196,168,130,0.2);
-      transition: box-shadow 0.3s ease;
+      transition: box-shadow .3s;
     }
-
     nav.scrolled { box-shadow: 0 2px 24px rgba(44,36,24,0.08); }
-
-    .nav-brand { text-decoration: none; }
-    .nav-brand .brand-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 500;
-      color: var(--deep); line-height: 1;
+    .nav-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: #2C2418; letter-spacing: 0.02em; text-decoration: none;
     }
-    .nav-brand .brand-sub {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 300;
-      color: var(--warm-brown); font-style: italic;
-    }
-
-    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-logo span { color: #C4A882; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
-      text-decoration: none; font-size: 0.8rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--deep); opacity: 0.7; transition: opacity 0.2s;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #6B4F35; text-decoration: none; transition: color .2s;
     }
-    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .nav-links a:hover, .nav-links a.active { color: #C4A882; }
     .nav-cta {
-      background: var(--deep); color: var(--white) !important;
-      opacity: 1 !important; padding: 0.65rem 1.5rem;
-      border-radius: 2px; transition: background 0.2s !important;
+      background: #6B4F35; color: #FFFFFF !important;
+      padding: 0.6rem 1.4rem; border-radius: 2px; transition: background .2s !important;
     }
-    .nav-cta:hover { background: var(--warm-brown) !important; }
+    .nav-cta:hover { background: #2C2418 !important; color: #FFFFFF !important; }
 
     /* PAGE HERO */
     .page-hero {
@@ -631,7 +617,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="mailto:hello@tablerockwellness.com">hello@tablerockwellness.com</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#3a525f5656557a4e5b58565f485559514d5f5656545f494914595557"><span class="__cf_email__" data-cfemail="96fef3fafaf9d6e2f7f4faf3e4f9f5fde1f3fafaf8f3e5e5b8f5f9fb">[email&#160;protected]</span></a></li>
           <li><a href="">Boise, Idaho</a></li>
           <li><a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Book a Free Call</a></li>
         </ul>
@@ -643,12 +629,4 @@
     </div>
   </footer>
 
-  <script>
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    });
-  </script>
-
-</body>
-</html>
+  <script data-cfasync="false" src="/cdn-cgi/scripts
