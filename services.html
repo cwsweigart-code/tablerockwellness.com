@@ -391,19 +391,16 @@
 </head>
 <body>
 
-  <nav id="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="brand-name">Table Rock</div>
-      <div class="brand-sub">Wellness</div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html" class="active">Services</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;" class="nav-cta">Book a Call</a></li>
-    </ul>
-  </nav>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Table Rock <span>Wellness</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="index.html#team">Our Team</a></li>
+    <li><a href="index.html#process">How It Works</a></li>
+    <li><a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
 
   <section class="page-hero">
     <div class="page-hero-inner">
@@ -647,9 +644,9 @@
   </footer>
 
   <script>
-    const navbar = document.getElementById('navbar');
+    const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      nav.classList.toggle('scrolled', window.scrollY > 20);
     });
   </script>
 

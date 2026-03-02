@@ -409,6 +409,71 @@
       text-align: center;
     }
 
+    .team-availability {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .avail-open { background: var(--sage); color: var(--white); }
+    .avail-waitlist { background: rgba(196,168,130,0.2); color: var(--stone); }
+
+    .team-book-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sandstone);
+      border: 1px solid rgba(196,168,130,0.4);
+      padding: 0.55rem 1.25rem;
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s;
+      font-family: var(--ff-body);
+    }
+    .team-book-btn:hover { background: rgba(196,168,130,0.15); border-color: var(--stone); }
+    .team-book-btn.primary { background: var(--stone); border-color: var(--stone); color: var(--deep); }
+    .team-book-btn.primary:hover { background: var(--sandstone); }
+
+    .waitlist-msg {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(196,168,130,0.1);
+      border-left: 2px solid var(--stone);
+      text-align: left;
+      border-radius: 2px;
+    }
+    .waitlist-msg p {
+      font-size: 0.8rem;
+      color: rgba(232,213,183,0.75);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .waitlist-msg .craig-btn {
+      display: inline-block;
+      background: var(--stone);
+      color: var(--deep);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.25rem;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      font-family: var(--ff-body);
+      transition: background 0.2s;
+    }
+    .waitlist-msg .craig-btn:hover { background: var(--sandstone); }
+
     .team-photo {
       width: 100%;
       aspect-ratio: 3/4;
@@ -804,26 +869,44 @@
 <section class="team" id="team">
   <p class="section-label">The People Behind the Practice</p>
   <h2 class="section-title">Our <em>team</em></h2>
-  <p class="section-body">We're real people who care deeply about your relationships — and about doing this work with integrity.</p>
+  <p class="section-body">Every coach at Table Rock Wellness shares the same commitment — helping you and your partner find a clearer, more connected path forward.</p>
   <div class="team-grid">
+
     <div class="team-card">
       <div class="team-photo team-photo-1"></div>
-      <div class="team-name">[Your Name]</div>
+      <span class="team-availability avail-open">Accepting Clients</span>
+      <div class="team-name">Craig Sweigart</div>
       <div class="team-role">Lead Relationship Coach &amp; Founder</div>
-      <p class="team-bio">Placeholder bio — share your background, what drew you to coaching, and what clients can expect when they work with you. Keep it warm, personal, and honest.</p>
+      <p class="team-bio">Craig founded Table Rock Wellness on the belief that most couples in crisis aren't failing for lack of love — they're failing for lack of tools. With a background in communications, philosophy, and psychology, he brings a grounded, empathetic approach to helping couples and individuals break the patterns keeping them stuck. He works with established adults navigating conflict, disconnection, and the hard work of choosing each other again.</p>
+      <button class="team-book-btn primary" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Book with Craig</button>
     </div>
+
     <div class="team-card">
       <div class="team-photo team-photo-2"></div>
-      <div class="team-name">[Team Member 2]</div>
+      <span class="team-availability avail-waitlist">Waitlist Only</span>
+      <div class="team-name">Jordan Ellis</div>
       <div class="team-role">Relationship Coach</div>
-      <p class="team-bio">Placeholder bio for a second coach or associate. If you're starting solo, this section can be adjusted to feature your approach in two different formats.</p>
+      <p class="team-bio">Jordan specializes in working with individuals navigating the emotional aftermath of relationship breakdown — separation, divorce, and rebuilding after loss. Her approach centers on self-discovery and forward momentum, helping clients understand not just what went wrong, but how to show up differently in the relationships ahead. Jordan brings warmth, patience, and a deep belief in people's capacity to change.</p>
+      <button class="team-book-btn" onclick="showWaitlist('jordan-msg')">Join Jordan's Waitlist</button>
+      <div class="waitlist-msg" id="jordan-msg">
+        <p>Jordan's schedule is currently full. In the meantime, Craig is available now and brings the same commitment to helping you move forward.</p>
+        <button class="craig-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Book a Free Call with Craig</button>
+      </div>
     </div>
+
     <div class="team-card">
       <div class="team-photo team-photo-3"></div>
-      <div class="team-name">[Team Member 3]</div>
+      <span class="team-availability avail-waitlist">Waitlist Only</span>
+      <div class="team-name">Avery Morgan</div>
       <div class="team-role">Relationship Coach</div>
-      <p class="team-bio">Placeholder bio for a third team member. Consider featuring a referral partner, guest collaborator, or a specialist you work alongside.</p>
+      <p class="team-bio">Avery works primarily with couples who are committed to staying together but stuck in repeating cycles they can't seem to break. Her approach is structured and practical — she helps couples develop concrete communication tools, identify their specific conflict patterns, and build new habits that hold up outside the coaching room. Clients describe her sessions as challenging in the best possible way.</p>
+      <button class="team-book-btn" onclick="showWaitlist('avery-msg')">Join Avery's Waitlist</button>
+      <div class="waitlist-msg" id="avery-msg">
+        <p>Avery's schedule is currently full. Craig is available now and specializes in exactly the kind of couples work Avery focuses on.</p>
+        <button class="craig-btn" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Book a Free Call with Craig</button>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -914,8 +997,8 @@
       <div class="footer-col-title">About</div>
       <ul class="footer-links">
         <li><a href="about.html">Our Approach</a></li>
-        <li><a href="about.html">Meet the Team</a></li>
-        <li><a href="services.html#faq">FAQ</a></li>
+        <li><a href="#team">Meet the Team</a></li>
+        <li><a href="services.html">FAQ</a></li>
         <li><a href="#">Blog</a></li>
       </ul>
     </div>
@@ -924,7 +1007,7 @@
       <ul class="footer-links">
         <li><a href="#">Southwest Boise Office</a></li>
         <li><a href="mailto:hello@tablerockwellness.com">hello@tablerockwellness.com</a></li>
-        <li><a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/hello-tablerockwellness/30min'});return false;">Virtual Sessions</a></li>
+        <li><a href="#">Virtual Sessions</a></li>
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Facebook</a></li>
       </ul>
@@ -935,9 +1018,24 @@
     <div class="footer-legal">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
-      <a href="about.html#coaching-note">Coaching Disclaimer</a>
+      <a href="#">Coaching Disclaimer</a>
     </div>
   </div>
-</footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cl
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Waitlist redirect logic
+  function showWaitlist(id) {
+    const msg = document.getElementById(id);
+    if (msg) {
+      msg.style.display = msg.style.display === 'block' ? 'none' : 'block';
+    }
+  }
+</script>
+</body>
+</html>
