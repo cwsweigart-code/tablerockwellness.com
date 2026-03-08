@@ -90,6 +90,61 @@
       text-transform: uppercase; color: var(--sage); margin-bottom: 1rem;
     }
 
+    /* INTRO SPLIT */
+    .about-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start; margin-bottom: 6rem;
+    }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--sandstone); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .about-photo-accent {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 55%; height: 55%;
+      border: 2px solid var(--stone); border-radius: 4px; z-index: -1;
+    }
+    .photo-label {
+      font-family: var(--ff-display); font-size: 1rem;
+      font-style: italic; color: var(--warm); opacity: 0.5; text-align: center;
+    }
+    .about-text h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300;
+      color: var(--deep); line-height: 1.2; margin-bottom: 1.75rem;
+    }
+    .about-text h2 em { font-style: italic; color: var(--stone); }
+    .about-text p {
+      font-size: 1rem; line-height: 1.85; color: var(--muted);
+      font-weight: 300; margin-bottom: 1.5rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      background: var(--deep); padding: 5rem 6rem;
+      position: relative; overflow: hidden;
+    }
+    .pull-quote::before {
+      content: '\201C'; position: absolute; top: -1rem; left: 5rem;
+      font-family: var(--ff-display); font-size: 14rem;
+      color: rgba(255,255,255,0.05); line-height: 1;
+    }
+    .pull-quote blockquote {
+      font-family: var(--ff-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300;
+      font-style: italic; line-height: 1.4;
+      max-width: 760px; margin: 0 auto; text-align: center;
+      color: var(--sandstone); position: relative; z-index: 1;
+    }
+    .pull-quote cite {
+      display: block; font-family: var(--ff-body); font-style: normal;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--stone); margin-top: 1.5rem;
+    }
+
     /* PHILOSOPHY GRID */
     .philosophy { margin-bottom: 6rem; }
     .philosophy h2 {
@@ -131,9 +186,9 @@
       background-size: cover; background-position: center top;
       flex-shrink: 0;
     }
-    .coach-photo-jordan { background-image: url("jordan.jpg"); background-size: cover; background-position: center top; }
     .coach-photo-craig  { background: #7A6050; }
-    .coach-photo-avery  { background-image: url("avery.jpg"); background-size: cover; background-position: center top; }
+    .coach-photo-sonja { background-image: url("sonja.jpg"); }
+    .coach-photo-avery  { background-image: url("avery.jpg"); }
     .coach-bio-text h3 {
       font-family: var(--ff-display); font-size: 1.8rem; font-weight: 400;
       color: var(--deep); margin-bottom: 0.25rem;
@@ -222,8 +277,37 @@
 
 <section class="page-hero">
   <p class="page-label">About</p>
-  <h1 class="page-title">The people behind <em>Table Rock Wellness</em></h1>
+  <h1 class="page-title">Grounded work for <em>real relationships</em></h1>
 </section>
+
+<div class="content">
+
+  <div class="about-intro">
+    <div style="position:relative;">
+      <div class="about-photo">
+        <p class="photo-label">Craig Sweigart<br/>Photo Coming Soon</p>
+      </div>
+      <div class="about-photo-accent"></div>
+    </div>
+
+    <div class="about-text">
+      <p class="section-label">Craig Sweigart — Founder</p>
+      <h2>A practice built on <em>honesty</em> and self-awareness</h2>
+      <p>Craig holds this straightforward belief: most couples in conflict aren't failing for lack of love. They're failing because they've lost the ability to see themselves clearly — and each other honestly.</p>
+      <p>With a background in communications, philosophy, and psychology, Craig brings a thoughtful, grounded approach to relationship coaching. He's navigated the full range of relationships himself — the difficult ones that demanded real growth, and the healthy ones that showed him what was possible. That experience informs how he works with clients.</p>
+      <p>His approach isn't about assigning blame or declaring winners. It's about helping each person <strong>understand their own patterns</strong>, develop genuine empathy for their partner's experience, and find the willingness to engage differently. Real change is possible — but only when both people are willing to look honestly at themselves first.</p>
+      <p>Table Rock Wellness is based in Boise, Idaho — named for the landmark that has watched over this valley for centuries. The name reflects the kind of work Craig believes in: grounded, enduring, and built on something solid.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="pull-quote">
+  <blockquote>
+    Most couples in crisis aren't failing because they've stopped loving each other. They're failing because they've stopped truly seeing each other.
+    <cite>— Craig Sweigart, Table Rock Wellness</cite>
+  </blockquote>
+</div>
 
 <div class="content">
 
@@ -257,11 +341,11 @@
     <div class="coach-grid">
 
       <div class="coach-bio-card">
-        <div class="coach-photo coach-photo-jordan"></div>
+        <div class="coach-photo coach-photo-sonja"></div>
         <div class="coach-bio-text">
-          <h3>Jordan Ellis</h3>
+          <h3>Sonja Ellis</h3>
           <p class="coach-role-label">Relationship Coach</p>
-          <p>Jordan came to coaching through her own experience navigating the end of a long-term relationship — and the slow, clarifying work of rebuilding afterward. That experience gave her something rare: a genuine understanding of what it feels like to be on the other side of a relationship in crisis.</p>
+          <p>Sonja came to coaching through her own experience navigating the end of a long-term relationship — and the slow, clarifying work of rebuilding afterward. That experience gave her something rare: a genuine understanding of what it feels like to be on the other side of a relationship in crisis.</p>
           <p>She works primarily with individuals — people who are processing separation or divorce, trying to understand why their relationships haven't worked, or preparing to show up differently in what comes next. Her style is warm, unhurried, and deeply focused on helping clients develop the self-awareness that makes lasting change possible.</p>
         </div>
       </div>
@@ -271,7 +355,7 @@
         <div class="coach-bio-text">
           <h3>Craig Sweigart</h3>
           <p class="coach-role-label">Relationship Coach</p>
-          <p>Craig founded Table Rock Wellness on a straightforward belief: most couples in conflict aren't failing for lack of love. They're failing because they've lost the ability to see themselves clearly — and each other honestly.</p>
+          <p>Craig holds this straightforward belief: most couples in conflict aren't failing for lack of love. They're failing because they've lost the ability to see themselves clearly — and each other honestly.</p>
           <p>With a background in communications, philosophy, and psychology, Craig works with both couples and individuals navigating conflict, disconnection, and the hard work of choosing each other again. His approach is grounded and direct — he helps clients understand their own patterns, build genuine empathy for their partner's experience, and find the willingness to engage differently.</p>
         </div>
       </div>
@@ -292,7 +376,7 @@
 
   <div class="coaching-note">
     <h3>A note about coaching vs. therapy</h3>
-    <p>Table Rock Wellness provides relationship <strong>coaching</strong> — a forward-focused, goal-oriented service designed to help you identify patterns, build self-awareness, and develop practical strategies for your relationship. Coaching is not a licensed mental health service and is not a substitute for therapy, counseling, or psychiatric care. If clinical support is what's needed, Our coaches will be honest with you and can help point you in the right direction.</p>
+    <p>Table Rock Wellness provides relationship <strong>coaching</strong> — a forward-focused, goal-oriented service designed to help you identify patterns, build self-awareness, and develop practical strategies for your relationship. Coaching is not a licensed mental health service and is not a substitute for therapy, counseling, or psychiatric care. If clinical support is what's needed, our coaches will tell you honestly and help point you in the right direction.</p>
   </div>
 
 </div>
@@ -328,7 +412,7 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:hello@tablerockwellness.com">hello@tablerockwellness.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#68000d040407281c090a040d1a070b031f0d0404060d1b1b460b0705"><span class="__cf_email__" data-cfemail="78101d141417380c191a141d0a171b130f1d1414161d0b0b561b1715">[email&#160;protected]</span></a></li>
         <li><a href="contact.html">Send a Message</a></li>
         <li><a href="">Boise, Idaho</a></li>
       </ul>
